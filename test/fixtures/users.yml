@@ -3,6 +3,7 @@ foo:
   name: foo
   email: foo@example.com
   password_digest: <%= User.digest('foobarbaz') %>
+  admin: true
 
 bar:
   name: bar
