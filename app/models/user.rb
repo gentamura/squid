@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_one :money_account, dependent: :destroy
+  has_many :money_transfers, foreign_key: "sender_id", dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -35,6 +37,7 @@ class User < ApplicationRecord
 
   def activate
     update_columns(activated: true, activated_at: Time.zone.now)
+    create_money_account!
   end
 
   def send_activation_mail
