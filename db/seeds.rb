@@ -14,7 +14,7 @@ User.create!(
   admin: true,
   activated: true,
   activated_at: Time.zone.now
-).create_money_account!
+).create_money_account!(balance: 1000)
 
 99.times do |n|
   name = FFaker::Name.name
@@ -27,5 +27,5 @@ User.create!(
     password_confirmation: password,
     activated: true,
     activated_at: Time.zone.now
-  ).create_money_account!
+  ).create_money_account!(balance: 1000)
 end

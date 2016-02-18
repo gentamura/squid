@@ -1,1 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+foo:
+  balance: 1000
+  user: foo
+
+bar:
+  balance: 1000
+  user: bar
+
+baz:
+  balance: 1000
+  user: baz
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  balance: 1000
+  user: user_<%= n %>
+<% end %>

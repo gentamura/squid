@@ -1,0 +1,2 @@
+module MoneyTransfersHelper
+end
