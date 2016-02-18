@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersLoginTest < ActionDispatch::IntegrationTest
   def setup
     @activated_user = users(:foo)
-    @non_activated_user = users(:baz)
+    @unactivated_user = users(:baz)
   end
 
   test "login with invalid information" do
@@ -42,32 +42,32 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "user login with not activated" do
-    log_in_as(@non_activated_user)
+    log_in_as(@unactivated_user)
     assert_not is_logged_in?
   end
 
   test "user login with invalid activation token" do
-    user = @non_activated_user
+    user = @unactivated_user
     assign_activation(user)
     get edit_account_activation_path("invalid token")
     assert_not is_logged_in?
   end
 
   test "user login with invalid email" do
-    user = @non_activated_user
+    user = @unactivated_user
     assign_activation(user)
     get edit_account_activation_path(user.activation_token, email: 'wrong')
     assert_not is_logged_in?
   end
 
   test "user login with valid activation token" do
-    user = @non_activated_user
+    user = @unactivated_user
     assign_activation(user)
     get edit_account_activation_path(user.activation_token, email: user.email)
     follow_redirect!
     assert @controller.instance_variable_get(:@user).activated?
     assert_select 'div.alert-success', 'Account activated!'
-    assert_select 'h1', test: 'User page'
+    assert_select 'h1', 'User page'
     assert is_logged_in?
   end
 

@@ -4,6 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:foo)
     @other_user = users(:bar)
+    @unactivated_user = users(:baz)
   end
 
   test "should get new" do
@@ -79,5 +80,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     }
     @other_user.reload
     assert_not @other_user.admin?
+  end
+
+  test "should not include unactivated user at index" do
+    log_in_as(@user)
+    get users_path
+    users = @controller.instance_variable_get(:@users).to_a
+    assert_not_includes users, @unactivated_user
+  end
+
+  test "should redirect show when unactivated user" do
+    log_in_as(@user)
+    get user_path(@unactivated_user)
+    assert_response :redirect
   end
 end
