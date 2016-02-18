@@ -65,6 +65,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assign_activation(user)
     get edit_account_activation_path(user.activation_token, email: user.email)
     follow_redirect!
+    assert @controller.instance_variable_get(:@user).activated?
     assert_select 'div.alert-success', 'Account activated!'
     assert_select 'h1', test: 'User page'
     assert is_logged_in?
