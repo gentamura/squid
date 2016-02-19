@@ -1,6 +1,6 @@
 <h1>MoneyTransfers</h1>
 
-<%= form_for(:money_transfer, url: money_transfers_path) do |f| %>
+<%= form_for(:user_money_transfer, url: user_money_transfers_path) do |f| %>
   <div>
     <%= f.label :receiver_id %>
     <%= f.number_field :receiver_id %>

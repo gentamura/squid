@@ -1,5 +1,6 @@
 class MoneyTransfersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :new]
+  before_action :logged_in_user, only: [:index, :new, :create]
+  before_action :correct_user, only: [:index, :new, :create]
 
   def index
 
@@ -19,8 +20,8 @@ MoneyTransfer:0x007ffeca54bf98
 =end
 
   def create
-    money_transfer = current_user.money_transfers.build(money_transfer_params)
-    puts "money_transfer: #{money_transfer}"
+    # money_transfer = current_user.money_transfers.build(money_transfer_params)
+    # puts "money_transfer: #{money_transfer}"
     # if money_transfer.save
     #
     # else
@@ -30,6 +31,6 @@ MoneyTransfer:0x007ffeca54bf98
 
   private
     def money_transfer_params
-      params.require(:money_transfer).permit(:receiver_id, :amount, :message)
+      params.require(:user_money_transfer).permit(:receiver_id, :amount, :message)
     end
 end
