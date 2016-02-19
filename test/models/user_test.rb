@@ -65,4 +65,17 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
   end
+
+  test "activate should make a money account for user" do
+    @user.save
+    @user.activate
+    assert @user.money_account
+  end
+
+  test "destroy should destroy a money account for user" do
+    @user.save
+    @user.activate
+    @user.destroy
+    assert_not MoneyAccount.find_by(user_id: @user.id)
+  end
 end
