@@ -49,7 +49,7 @@ class MoneyTransfersControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@other_user)
     post user_money_transfers_path(@user), params: {
       id: @user.id,
-      money_transfer: {
+      user_money_transfer: {
         sender_id: @user.id,
         receiver_id: @other_user.id,
         amount: 100,
@@ -58,6 +58,21 @@ class MoneyTransfersControllerTest < ActionDispatch::IntegrationTest
     }
     assert flash.empty?
     assert_redirected_to root_url
+  end
+
+  test "valid transfer" do
+    log_in_as(@user)
+    assert_difference "MoneyTransfer.count", 1 do
+      post user_money_transfers_path(@user), params: {
+        user_money_transfer: {
+          sender_id: @user.id,
+          receiver_id: @other_user.id,
+          amount: 1000,
+          message: "Success transfer?"
+        }
+      }
+    end
+    assert_redirected_to user_money_transfers_path(@user)
   end
 
 end

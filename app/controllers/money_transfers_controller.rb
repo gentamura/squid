@@ -3,34 +3,29 @@ class MoneyTransfersController < ApplicationController
   before_action :correct_user, only: [:index, :new, :create]
 
   def index
-
   end
 
   def new
   end
-=begin
-MoneyTransfer:0x007ffeca54bf98
-  id: nil,
-  sender_id: nil,
-  receiver_id: nil,
-  amount: nil,
-  message: nil,
-  created_at: nil,
-  updated_at: nil
-=end
 
   def create
-    # money_transfer = current_user.money_transfers.build(money_transfer_params)
-    # puts "money_transfer: #{money_transfer}"
-    # if money_transfer.save
-    #
-    # else
-    #
-    # end
+    begin
+      money_transfer = current_user.money_transfers.build(money_transfer_params)
+      money_transfer.exec_transaction
+      flash[:success] = "sent!"
+      redirect_to user_money_transfers_url(current_user)
+    rescue
+      flash[:warning] = "Not sent."
+      render 'new'
+    end
   end
 
   private
     def money_transfer_params
       params.require(:user_money_transfer).permit(:receiver_id, :amount, :message)
+    end
+
+    def correct_user
+      correct_user_base params[:user_id]
     end
 end
