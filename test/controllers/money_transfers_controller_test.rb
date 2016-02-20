@@ -75,4 +75,20 @@ class MoneyTransfersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to user_money_transfers_path(@user)
   end
 
+  test "Invalid transfer" do
+    log_in_as(@user)
+    assert_no_difference "MoneyTransfer.count" do
+      post user_money_transfers_path(@user), params: {
+        user_money_transfer: {
+          sender_id: @user.id,
+          receiver_id: @other_user.id,
+          amount: nil,
+          message: "Fail transfer."
+        }
+      }
+    end
+    assert_select 'h1', 'MoneyTransfers#new'
+    assert_response :success
+  end
+
 end
