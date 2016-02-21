@@ -4,8 +4,12 @@
 </p>
 <%= form_for(:user_money_transfer, url: user_money_transfers_path) do |f| %>
   <div>
-    <%= f.label :receiver_id %>
-    <%= f.number_field :receiver_id %>
+    <%= f.label :receiver %>
+    <% unless @friends.blank? %>
+      <%= f.collection_select :receiver_id, @friends, :id, :name %>
+    <% else %>
+      No friends.
+    <% end %>
   </div>
 
   <div>

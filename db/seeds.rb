@@ -18,7 +18,7 @@ User.create!(
 
 99.times do |n|
   name = FFaker::Name.name
-  email = "foo-#{n+1}@example.com"
+  email = "#{FFaker::Internet.user_name}@example.com"
   password = "foobarbaz"
   User.create!(
     name: name,

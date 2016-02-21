@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  get 'mypage' => 'users#mypage'
+  get 'friends' => 'users#friends'
   resources :users do
     resources :money_transfers, only: [:index, :new, :create]
   end

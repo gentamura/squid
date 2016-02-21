@@ -1,0 +1,6 @@
+<h1>My page</h1>
+<%= current_user.name %> | <%= current_user.email %> | balance: <%= current_user.money_account.balance %>
+
+<p>
+  <%= link_to 'Money transfer', new_user_money_transfer_path(current_user) %> | <%= link_to 'Friends', friends_path %>
+</p>

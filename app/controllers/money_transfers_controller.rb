@@ -6,6 +6,7 @@ class MoneyTransfersController < ApplicationController
   end
 
   def new
+    @friends = current_user.friends
   end
 
   def create
