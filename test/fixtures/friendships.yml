@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# foo:
+#   user: foo
+#   friend: bar
+#
+# bar:
+#   user: bar
+#   friend: baz
+#
+# baz:
+#   user: baz
+#   friend: foo

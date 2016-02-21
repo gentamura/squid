@@ -1,6 +1,10 @@
+require 'pp'
+
 class User < ApplicationRecord
   has_one :money_account, dependent: :destroy
   has_many :money_transfers, foreign_key: "sender_id", dependent: :destroy
+  has_many :friendships, dependent: :destroy
+  has_many :friends, foreign_key: "friend_id", through: :friendships
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -55,6 +59,18 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  def friend(other_user)
+    friendships.create(friend_id: other_user.id)
+  end
+
+  def unfriend(other_user)
+    friends.find(other_user.id).destroy
+  end
+
+  def friend?(other_user)
+    friends.include?(other_user)
   end
 
   private

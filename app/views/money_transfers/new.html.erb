@@ -1,5 +1,7 @@
 <h1>MoneyTransfers#new</h1>
-
+<p>
+  <%= link_to 'Back', user_path(current_user) %>
+</p>
 <%= form_for(:user_money_transfer, url: user_money_transfers_path) do |f| %>
   <div>
     <%= f.label :receiver_id %>

@@ -78,4 +78,14 @@ class UserTest < ActiveSupport::TestCase
     @user.destroy
     assert_not MoneyAccount.find_by(user_id: @user.id)
   end
+
+  test "should friend and unfriend a user" do
+    user = users(:foo)
+    other_user = users(:bar)
+    assert_not user.friend?(other_user)
+    user.friend(other_user)
+    assert user.friend?(other_user)
+    user.unfriend(other_user)
+    assert_not user.friend?(other_user)
+  end
 end
