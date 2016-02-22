@@ -1,26 +1,32 @@
 <h1>MoneyTransfers#new</h1>
-<%= form_for(:money_transfer, url: money_transfers_path) do |f| %>
-  <div>
-    <%= f.label :receiver %>
-    <% unless @friends.blank? %>
+
+<% unless @friends.blank? %>
+
+  <%= form_for(:money_transfer, url: money_transfers_path) do |f| %>
+    <div>
+      <%= f.label :receiver %>
       <%= f.collection_select :receiver_id, @friends, :id, :name %>
-    <% else %>
-      No friends.
-    <% end %>
-  </div>
+    </div>
 
-  <div>
-    <%= f.label :amount %>
-    <%= f.text_field :amount %>
-  </div>
+    <div>
+      <%= f.label :amount %>
+      <%= f.text_field :amount %>
+    </div>
 
-  <div>
-    <%= f.label :message %>
-    <%= f.text_field :message %>
-  </div>
+    <div>
+      <%= f.label :message %>
+      <%= f.text_field :message %>
+    </div>
 
-  <%= f.submit "Submit" %>
+    <%= f.submit "Submit" %>
+  <% end %>
+
+<% else %>
+
+  <p>No friends.</p>
+
 <% end %>
+
 <p>
   <%= link_to 'Back', mypage_path %>
 </p>

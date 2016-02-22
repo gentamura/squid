@@ -1,4 +1,6 @@
 class FriendshipsController < ApplicationController
+  before_action :logged_in_user, only: [:index, :new, :create]
+
   def index
   end
 
@@ -13,9 +15,8 @@ class FriendshipsController < ApplicationController
       flash[:success] = "Success!"
       redirect_to friendships_path
     else
-      flash.now[:warning] = "Failed."
-      @friend = User.find(friendship.friend_id)
-      render 'new'
+      flash[:warning] = "Failed."
+      redirect_to users_path
     end
   end
 
