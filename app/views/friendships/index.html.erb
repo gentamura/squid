@@ -1,0 +1,14 @@
+<h1>Friendships#index</h1>
+<ul>
+  <% unless current_user.friends.blank? %>
+    <% current_user.friends.each do |friend| %>
+      <li><%= friend.name %></li>
+    <% end %>
+  <% else %>
+    <li>No friends.</li>
+  <% end %>
+</ul>
+
+<p>
+  <%= link_to 'Back', mypage_path %>
+</p>

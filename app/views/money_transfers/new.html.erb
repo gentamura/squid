@@ -1,8 +1,5 @@
 <h1>MoneyTransfers#new</h1>
-<p>
-  <%= link_to 'Back', user_path(current_user) %>
-</p>
-<%= form_for(:user_money_transfer, url: user_money_transfers_path) do |f| %>
+<%= form_for(:money_transfer, url: money_transfers_path) do |f| %>
   <div>
     <%= f.label :receiver %>
     <% unless @friends.blank? %>
@@ -24,3 +21,6 @@
 
   <%= f.submit "Submit" %>
 <% end %>
+<p>
+  <%= link_to 'Back', mypage_path %>
+</p>

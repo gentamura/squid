@@ -1,6 +1,2 @@
 <h1>User page</h1>
-<%= @user.name %> | <%= @user.email %> | balance: <%= @user.money_account.balance %>
-
-<p>
-  <%= link_to 'Money transfer', new_user_money_transfer_path(@user) %> | <%= link_to 'Friends', friends_path %>
-</p>
+<%= @user.name %> | <%= @user.email %>

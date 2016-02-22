@@ -3,4 +3,7 @@
   <% if current_user.admin? && !current_user?(user) %>
    | <%= link_to "delete", user, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
+  <% unless current_user.friend?(user) or user == current_user %>
+   | <%= link_to "Add friends", new_friendship_path(user) %>
+  <% end %>
 </li>

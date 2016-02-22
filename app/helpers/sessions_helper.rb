@@ -58,9 +58,4 @@ module SessionsHelper
       redirect_to login_url
     end
   end
-
-  def correct_user_base(id)
-    @user = User.find(id)
-    redirect_to root_url unless current_user?(@user)
-  end
 end

@@ -1,0 +1,15 @@
+<h1>Friendships#new</h1>
+<% if current_user.friend?(@friend) %>
+  <p>This friend is registered.</p>
+<% else %>
+  Do you register <b><%= @friend.name %> [<%= @friend.email %>]</b>?
+  <%= form_for(@friendship) do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :friend_id, value: @friend.id %>
+    <%= f.submit 'Yes' %>
+  <% end %>
+  <%= button_to "No", users_path, method: :get %>
+<% end %>
+<p>
+  <%= link_to 'Back', friendships_path %>
+</p>
