@@ -5,7 +5,9 @@
   <%= form_for(:money_transfer, url: money_transfers_path) do |f| %>
     <div>
       <%= f.label :receiver %>
-      <%= f.collection_select :receiver_id, @friends, :id, :name %>
+      <div class="input-field">
+        <%= f.collection_select :receiver_id, @friends, :id, :name, prompt: "Please select a friend" %>
+      </div>
     </div>
 
     <div>

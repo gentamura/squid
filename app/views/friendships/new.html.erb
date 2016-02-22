@@ -6,9 +6,9 @@
   <%= form_for(@friendship) do |f| %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :friend_id, value: @friend.id %>
-    <%= f.submit 'Yes' %>
+    <%= f.submit 'Yes', class: "waves-effect waves-light btn" %>
   <% end %>
-  <%= button_to "No", users_path, method: :get %>
+  <%= button_to "No", users_path, method: :get, class: "waves-effect waves-light btn" %>
 <% end %>
 <p>
   <%= link_to 'Back', friendships_path %>

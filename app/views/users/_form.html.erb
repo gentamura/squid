@@ -17,6 +17,6 @@
     <%= f.password_field :password_confirmation %>
   </div>
   <div>
-    <%= f.submit yield(:submit_button_text) %>
+    <%= f.submit yield(:submit_button_text), class: "waves-effect waves-light btn" %>
   </div>
 <% end %>
