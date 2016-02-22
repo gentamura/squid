@@ -24,3 +24,6 @@
 
 # Ignore simplecov files.
 /coverage
+
+# Ignore npm packages.
+/node_modules
