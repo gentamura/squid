@@ -1,15 +1,37 @@
 <h1>MoneyTransfers#index</h1>
-<ul class="collection">
-  <% if current_user.money_transfers %>
-    <% current_user.money_transfers.each do |transfer| %>
-      <li class="collection-item avatar">
-        <%= image_tag FFaker::Avatar.image(transfer.receiver.name, '50x50'), class: 'circle' %>
-        <p>
-          <%= transfer.receiver.name %><br>
-          <%= transfer.amount %><br>
-          <%= transfer.created_at %>
-        </p>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col s6">
+    <h2>Sent</h2>
+    <ul class="collection">
+      <% if current_user.money_senders %>
+        <% current_user.money_senders.each do |transfer| %>
+          <li class="collection-item avatar">
+            <%= image_tag FFaker::Avatar.image(transfer.receiver.name, '50x50'), class: 'circle' %>
+            <p>
+              <%= transfer.receiver.name %><br>
+              <%= transfer.amount %><br>
+              <%= transfer.created_at %>
+            </p>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col s6">
+    <h2>Received</h2>
+    <ul class="collection">
+      <% if current_user.money_receivers %>
+        <% current_user.money_receivers.each do |transfer| %>
+          <li class="collection-item avatar">
+            <%= image_tag FFaker::Avatar.image(transfer.sender.name, '50x50'), class: 'circle' %>
+            <p>
+              <%= transfer.sender.name %><br>
+              <%= transfer.amount %><br>
+              <%= transfer.created_at %>
+            </p>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

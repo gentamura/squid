@@ -1,17 +1,16 @@
 <h1>MoneyTransfers#new</h1>
 
-<% unless @friends.blank? %>
+<% unless @receivers.blank? %>
 
   <%= form_for(:money_transfer, url: money_transfers_path) do |f| %>
     <div>
       <%= f.label :receiver %>
       <div class="input-field">
-        <% if @friend_name %>
-          <%= f.collection_select :receiver_id, @friends, :id, :name, prompt: "Please select a friend", selected: @friend_name %>
+        <% unless @assigned_receiver.blank? %>
+          <%= f.collection_select :receiver_id, @receivers, :id, :name, prompt: "Please select a friend", selected: @assigned_receiver %>
         <% else %>
-          <%= f.collection_select :receiver_id, @friends, :id, :name, prompt: "Please select a friend" %>
+          <%= f.collection_select :receiver_id, @receivers, :id, :name, prompt: "Please select a friend" %>
         <% end %>
-
       </div>
     </div>
 

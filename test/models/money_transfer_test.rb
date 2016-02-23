@@ -4,7 +4,8 @@ class MoneyTransferTest < ActiveSupport::TestCase
   def setup
     @sender = users(:foo)
     @receiver = users(:bar)
-    @money_transfer = @sender.money_transfers.build(receiver_id: @receiver.id, amount: 100, message: "hello")
+    # @money_transfer = @sender.money_transfers.build(receiver_id: @receiver.id, amount: 100, message: "hello")
+    @money_transfer = @sender.money_senders.build(receiver_id: @receiver.id, amount: 100, message: "hello")
   end
 
   test "should be valid" do
