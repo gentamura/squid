@@ -6,10 +6,11 @@
     <div>
       <%= f.label :receiver %>
       <div class="input-field">
+        <% # TODO : Need adjustments %>
         <% unless @assigned_receiver.blank? %>
-          <%= f.collection_select :receiver_id, @receivers, :id, :name, prompt: "Please select a friend", selected: @assigned_receiver %>
+          <%= f.collection_select :receiver_id, current_user.eceivers, :id, :name, prompt: "Please select a friend", selected: @assigned_receiver %>
         <% else %>
-          <%= f.collection_select :receiver_id, @receivers, :id, :name, prompt: "Please select a friend" %>
+          <%= f.collection_select :receiver_id, current_user.receivers, :id, :name, prompt: "Please select a friend" %>
         <% end %>
       </div>
     </div>

@@ -6,8 +6,11 @@ class MoneyTransfersController < ApplicationController
 
   def new
     # TODO : change from array to ActiveRecord::Associations
+    # TODO : Need adjustments
     @receivers = Friendship.receivers(current_user)
-    @assigned_receiver = assigned_receiver(@receivers)
+    @assigned_receiver = nil
+    # @assigned_receiver = assigned_receiver(@receivers)
+    # puts "@assigned_receiver: #{@assigned_receiver} ========================================"
   end
 
   def create
@@ -28,11 +31,26 @@ class MoneyTransfersController < ApplicationController
     end
 
     def assigned_receiver(receivers)
-      assigned_receiver?(receivers) ? receivers.find(params[:receiver_id]) : ""
+      # receivers.each do |receiver|
+      #   if receiver.id == params[:receiver_id].to_i
+      #     receiver
+      #     break
+      #   end
+      # end
+      assigned_receiver?(receivers) ? receivers.find { |receiver| receiver.id == params[:receiver_id].to_i }  : ""
     end
+
+    # def assigned_receiver?(receivers)
+    #   user = User.exists?(id: params[:receiver_id].to_i)
+    #   if user
+    #     receivers.include?(user)
+    #   else
+    #     false
+    #   end
+    # end
 
     def assigned_receiver?(receivers)
       # TODO : Not working
-      params[:receiver_id] and receivers.exists?(id: params[:receiver_id].to_i)
+      params[:receiver_id] and receivers.include?(id: params[:receiver_id].to_i)
     end
 end
