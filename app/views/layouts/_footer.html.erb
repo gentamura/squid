@@ -1,9 +1,8 @@
 <footer class="page-footer">
-
   <div class="row">
     <div class="col s12">
-      <div class="card-panel teal">
-        <span class="white-text"><%= debug(params) if Rails.env.development? %></span>
+      <div class="card-panel">
+        <%= debug(params) if Rails.env.development? %>
       </div>
     </div>
   </div>

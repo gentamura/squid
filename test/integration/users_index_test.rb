@@ -26,7 +26,7 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
       if user.activated?
         assert_select 'a[href=?]', user_path(user), text: user.name
         unless user == @admin
-          assert_select 'a[href=?]', user_path(user), text: 'delete'
+          assert_select 'i.material-icons.left.delete', 'delete'
         end
       end
     end

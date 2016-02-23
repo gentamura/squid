@@ -7,3 +7,19 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.alert {
+  @extend .white-text;
+  &.success {
+    @extend .light-green.darken-1;
+  }
+  &.warning {
+    @extend .orange.darken-1;
+  }
+  &.info {
+    @extend .light-blue.darken-1;
+  }
+  &.danger {
+    @extend .deep-orange.darken-1;
+  }
+}

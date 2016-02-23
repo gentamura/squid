@@ -1,8 +1,17 @@
 <h1>Friendships#index</h1>
-<ul>
+<ul class="collection">
   <% unless current_user.friends.blank? %>
     <% current_user.friends.each do |friend| %>
-      <li><%= friend.name %></li>
+      <li class="collection-item avatar">
+        <%= image_tag FFaker::Avatar.image(friend.name, '50x50'), class: 'circle' %>
+        <p>
+          <%= friend.name %><br>
+          <%= friend.email %>
+        </p>
+        <%= link_to new_money_transfer_path(receiver_id: friend.id), class: 'secondary-content' do %>
+          <i class="material-icons">send</i>
+        <% end %>
+      </li>
     <% end %>
   <% else %>
     <li>No friends.</li>

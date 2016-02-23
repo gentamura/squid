@@ -2,14 +2,27 @@
 <% if current_user.friend?(@friend) %>
   <p>This friend is registered.</p>
 <% else %>
-  Do you register <b><%= @friend.name %> [<%= @friend.email %>]</b>?
-  <%= form_for(@friendship) do |f| %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.hidden_field :friend_id, value: @friend.id %>
-    <%= f.submit 'Yes', class: "waves-effect waves-light btn" %>
-  <% end %>
-  <%= button_to "No", users_path, method: :get, class: "waves-effect waves-light btn" %>
+  <div class="card yellow lighten-5">
+    <div class="card-content">
+      <span class="card-title">Add friends?</span>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <%= image_tag FFaker::Avatar.image(@friend.name, '50x50'), class: 'circle' %>
+          <p>
+            <%= @friend.name %><br>
+            <%= @friend.email %><br>
+          </p>
+        </li>
+      </ul>
+      <p>Do you register <b><%= @friend.name %></b>?</p>
+    </div>
+    <div class="card-action">
+      <%= form_for(@friendship) do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :friend_id, value: @friend.id %>
+        <%= f.submit 'Yes', class: "btn grey" %>
+        <%= link_to 'No', users_path, class: "btn grey" %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
-<p>
-  <%= link_to 'Back', friendships_path %>
-</p>

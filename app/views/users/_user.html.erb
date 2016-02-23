@@ -1,11 +1,18 @@
-<li class="collection-item">
-  <%= link_to user.name, user %>
-  <% unless current_user.friend?(user) or user == current_user %>
-   | <%= link_to "Add friends", new_friendship_path(user) %>
-  <% end %>
-  <% if current_user.admin? && !current_user?(user) %>
-    <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'secondary-content' do %>
-      <i class="material-icons">delete</i>
-    <% end %>
-  <% end %>
+<li class="collection-item avatar">
+  <%= image_tag FFaker::Avatar.image(user.name, '50x50'), class: 'circle' %>
+  <p>
+    <%= link_to user.name, user %>
+    <div class="secondary-content">
+      <% unless current_user.friend?(user) or user == current_user %>
+        <%= link_to new_friendship_path(user), class: 'waves-effect waves-light btn' do %>
+          <i class="material-icons left">library_add</i> Add friends
+        <% end %>
+      <% end %>
+      <% if current_user.admin? && !current_user?(user) %>
+        <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'waves-effect waves-light btn red' do %>
+          <i class="material-icons left delete">delete</i> Delete
+        <% end %>
+      <% end %>
+    </div>
+  </p>
 </li>

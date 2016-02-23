@@ -1,2 +1,10 @@
 <h1>User page</h1>
-<%= @user.name %> | <%= @user.email %>
+<ul class="collection">
+  <li class="collection-item avatar">
+    <%= image_tag FFaker::Avatar.image(@user.name, '50x50'), class: 'circle' %>
+    <p>
+      <%= @user.name %><br>
+      <%= @user.email %>
+    </p>
+  </li>
+</ul>

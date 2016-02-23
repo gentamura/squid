@@ -6,6 +6,15 @@ class MoneyTransfersController < ApplicationController
 
   def new
     @friends = current_user.friends
+    if params[:receiver_id]
+      if @friends.exists? id: params[:receiver_id].to_i
+        @friend_name = @friends.find(params[:receiver_id])
+      else
+        @friend_name = ""
+      end
+    else
+      @friend_name = ""
+    end
   end
 
   def create

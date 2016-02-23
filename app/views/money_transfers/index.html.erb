@@ -1,9 +1,14 @@
 <h1>MoneyTransfers#index</h1>
-<ul>
+<ul class="collection">
   <% if current_user.money_transfers %>
     <% current_user.money_transfers.each do |transfer| %>
-      <li>
-        Receiver: <%= transfer.receiver.name %> | amount: <%= transfer.amount %> | Sent date: <%= transfer.created_at %>
+      <li class="collection-item avatar">
+        <%= image_tag FFaker::Avatar.image(transfer.receiver.name, '50x50'), class: 'circle' %>
+        <p>
+          <%= transfer.receiver.name %><br>
+          <%= transfer.amount %><br>
+          <%= transfer.created_at %>
+        </p>
       </li>
     <% end %>
   <% end %>

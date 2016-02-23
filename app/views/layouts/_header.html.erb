@@ -3,10 +3,21 @@
     <%= link_to Rails.application.class.parent_name, root_path, class: "brand-logo" %>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <% if logged_in? %>
-        <li><%= link_to "Users", users_path %></li>
         <li><%= link_to "My page", mypage_path %></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">more_vert</i></a></li>
+        <li><%= link_to 'Friends all', friendships_path %></li>
+        <li><%= link_to 'Money transfer all', money_transfers_path %></li>
+        <li><%= link_to 'Money transfer to a friend', new_money_transfer_path %></li>
+        <li><%= link_to "Users", users_path %></li>
         <li><%= link_to "Settings", edit_user_path(current_user) %></li>
         <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+
+        <ul id="dropdown1" class="dropdown-content">
+          <li><a href="#!">one</a></li>
+          <li><a href="#!">two</a></li>
+          <li class="divider"></li>
+          <li><a href="#!">three</a></li>
+        </ul>
       <% else %>
         <li><%= link_to "Log in", login_path %></li>
       <% end %>

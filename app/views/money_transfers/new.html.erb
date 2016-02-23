@@ -6,7 +6,12 @@
     <div>
       <%= f.label :receiver %>
       <div class="input-field">
-        <%= f.collection_select :receiver_id, @friends, :id, :name, prompt: "Please select a friend" %>
+        <% if @friend_name %>
+          <%= f.collection_select :receiver_id, @friends, :id, :name, prompt: "Please select a friend", selected: @friend_name %>
+        <% else %>
+          <%= f.collection_select :receiver_id, @friends, :id, :name, prompt: "Please select a friend" %>
+        <% end %>
+
       </div>
     </div>
 
@@ -20,7 +25,7 @@
       <%= f.text_field :message %>
     </div>
 
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit", class: "waves-effect waves-light btn" %>
   <% end %>
 
 <% else %>
