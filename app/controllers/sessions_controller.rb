@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         log_in user
         remember user
         flash[:info] = "Logged in."
-        redirect_back_or user
+        redirect_back_or mypage_url
       else
         flash[:warning] = "Account not activated. Check your email for the activation link."
         redirect_to root_url
