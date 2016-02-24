@@ -45,7 +45,6 @@ group :development do
   gem 'spring'
   gem 'pry-rails'
   gem 'pry-doc'
-  gem 'ffaker'
 end
 
 group :test do
@@ -62,3 +61,5 @@ gem 'materialize-sass'
 group :production do
   gem 'rails_12factor'
 end
+
+gem 'ffaker'
