@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_one :money_account, dependent: :destroy
-  # has_many :money_transfers, foreign_key: "sender_id", dependent: :destroy
   has_many :money_senders, foreign_key: "sender_id", class_name: "MoneyTransfer", dependent: :destroy
   has_many :money_receivers, foreign_key: "receiver_id", class_name: "MoneyTransfer", dependent: :destroy
   has_many :friendships, dependent: :destroy

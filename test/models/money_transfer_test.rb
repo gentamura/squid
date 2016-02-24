@@ -21,4 +21,14 @@ class MoneyTransferTest < ActiveSupport::TestCase
     @money_transfer.receiver_id = nil
     assert_not @money_transfer.valid?
   end
+
+  test "should require a mount" do
+    @money_transfer.amount = nil
+    assert_not @money_transfer.valid?
+  end
+
+  test "should require a mount as integer" do
+    @money_transfer.amount = "string"
+    assert_not @money_transfer.valid?
+  end
 end

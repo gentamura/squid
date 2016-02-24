@@ -6,7 +6,6 @@
     <div>
       <%= f.label :receiver %>
       <div class="input-field">
-        <% # TODO : Need adjustments %>
         <% unless @assigned_receiver.blank? %>
           <%= f.collection_select :receiver_id, @receiver_friends, :id, :name, prompt: "Please select a friend", selected: @assigned_receiver %>
         <% else %>

@@ -3,7 +3,7 @@ class MoneyTransfer < ApplicationRecord
   belongs_to :receiver, class_name: "User"
   validates :sender_id,  presence: true
   validates :receiver_id, presence: true
-  validates :amount, presence: true
+  validates :amount, presence: true, numericality: { only_integer: true }
 
   def exec_transaction
     transaction do
