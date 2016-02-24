@@ -17,15 +17,19 @@ User.create!(
 ).create_money_account!(balance: 1000)
 
 99.times do |n|
-  name = FFaker::Name.name
-  email = "#{FFaker::Internet.user_name}@example.com"
-  password = "foobarbaz"
-  User.create!(
-    name: name,
-    email: email,
-    password: password,
-    password_confirmation: password,
-    activated: true,
-    activated_at: Time.zone.now
-  ).create_money_account!(balance: 1000)
+  begin
+    name = FFaker::Name.name
+    email = "#{FFaker::Internet.user_name}@example.com"
+    password = "foobarbaz"
+    User.create!(
+      name: name,
+      email: email,
+      password: password,
+      password_confirmation: password,
+      activated: true,
+      activated_at: Time.zone.now
+    ).create_money_account!(balance: 1000)
+  rescue
+    next
+  end
 end
