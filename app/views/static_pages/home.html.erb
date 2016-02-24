@@ -1,3 +1,5 @@
-<p>Welcome to Squid. This project is Rails demo applications.</p>
-<%= link_to "Sign up", signup_path, class:"btn" %>
-<%= link_to "Log in", login_path, class:"btn" %>
+<% if logged_in? and current_user.activated? %>
+  <%= render 'static_pages/mypage' %>
+<% else %>
+  <%= render 'static_pages/welcome' %>
+<% end %>

@@ -60,7 +60,7 @@ class MoneyTransfersControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_select 'h1', 'MoneyTransfers#new'
+    assert_select 'h1', 'Money transfer'
     assert_response :success
   end
 

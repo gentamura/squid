@@ -5,12 +5,8 @@ class MoneyTransfersController < ApplicationController
   end
 
   def new
-    # TODO : change from array to ActiveRecord::Associations
-    # TODO : Need adjustments
-    @receivers = Friendship.receivers(current_user)
-    @assigned_receiver = nil
-    # @assigned_receiver = assigned_receiver(@receivers)
-    # puts "@assigned_receiver: #{@assigned_receiver} ========================================"
+    @receiver_friends = Friendship.receiver_friends(current_user)
+    @assigned_receiver = assigned_receiver(@receiver_friends)
   end
 
   def create
@@ -31,26 +27,11 @@ class MoneyTransfersController < ApplicationController
     end
 
     def assigned_receiver(receivers)
-      # receivers.each do |receiver|
-      #   if receiver.id == params[:receiver_id].to_i
-      #     receiver
-      #     break
-      #   end
-      # end
-      assigned_receiver?(receivers) ? receivers.find { |receiver| receiver.id == params[:receiver_id].to_i }  : ""
+      user = valid_params? ? User.find(params[:receiver_id].to_i) : nil
+      user if user.present? and receivers.include?(user)
     end
 
-    # def assigned_receiver?(receivers)
-    #   user = User.exists?(id: params[:receiver_id].to_i)
-    #   if user
-    #     receivers.include?(user)
-    #   else
-    #     false
-    #   end
-    # end
-
-    def assigned_receiver?(receivers)
-      # TODO : Not working
-      params[:receiver_id] and receivers.include?(id: params[:receiver_id].to_i)
+    def valid_params?
+      params[:receiver_id].present? and User.exists?(params[:receiver_id])
     end
 end

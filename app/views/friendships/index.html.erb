@@ -1,4 +1,4 @@
-<h1>Friendships#index</h1>
+<h1>Friends</h1>
 <ul class="collection">
   <% unless @friends.blank? %>
     <% @friends.each do |friend| %>
@@ -8,7 +8,6 @@
         <p>
           <%= friend.name %><br>
           <%= friend.email %><br>
-          debug: user_id:<%= friend.id %>
         </p>
         <%= link_to new_money_transfer_path(receiver_id: friend.id), class: 'secondary-content' do %>
           <i class="material-icons">send</i>

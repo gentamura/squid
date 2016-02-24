@@ -1,6 +1,6 @@
-<h1>MoneyTransfers#new</h1>
+<h1>Money transfer</h1>
 
-<% unless @receivers.blank? %>
+<% if @receiver_friends.present? %>
 
   <%= form_for(:money_transfer, url: money_transfers_path) do |f| %>
     <div>
@@ -8,9 +8,9 @@
       <div class="input-field">
         <% # TODO : Need adjustments %>
         <% unless @assigned_receiver.blank? %>
-          <%= f.collection_select :receiver_id, current_user.eceivers, :id, :name, prompt: "Please select a friend", selected: @assigned_receiver %>
+          <%= f.collection_select :receiver_id, @receiver_friends, :id, :name, prompt: "Please select a friend", selected: @assigned_receiver %>
         <% else %>
-          <%= f.collection_select :receiver_id, current_user.receivers, :id, :name, prompt: "Please select a friend" %>
+          <%= f.collection_select :receiver_id, @receiver_friends, :id, :name, prompt: "Please select a friend" %>
         <% end %>
       </div>
     </div>
@@ -33,7 +33,3 @@
   <p>No friends.</p>
 
 <% end %>
-
-<p>
-  <%= link_to 'Back', mypage_path %>
-</p>

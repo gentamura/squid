@@ -1,4 +1,4 @@
-<h1>MoneyTransfers#index</h1>
+<h1>Money transfers</h1>
 <div class="row">
   <div class="col s6">
     <h2>Sent</h2>
@@ -8,9 +8,10 @@
           <li class="collection-item avatar">
             <%= image_tag FFaker::Avatar.image(transfer.receiver.name, '50x50'), class: 'circle' %>
             <p>
-              <%= transfer.receiver.name %><br>
-              <%= transfer.amount %><br>
-              <%= transfer.created_at %>
+              Receiver name: <%= transfer.receiver.name %><br>
+              Amount: <%= transfer.amount %><br>
+              Message: <%= transfer.message %><br>
+              Sent date: <%= transfer.created_at %>
             </p>
           </li>
         <% end %>
@@ -25,9 +26,10 @@
           <li class="collection-item avatar">
             <%= image_tag FFaker::Avatar.image(transfer.sender.name, '50x50'), class: 'circle' %>
             <p>
-              <%= transfer.sender.name %><br>
-              <%= transfer.amount %><br>
-              <%= transfer.created_at %>
+              Sender name: <%= transfer.sender.name %><br>
+              Amount: <%= transfer.amount %><br>
+              Message: <%= transfer.message %><br>
+              Sent date: <%= transfer.created_at %>
             </p>
           </li>
         <% end %>

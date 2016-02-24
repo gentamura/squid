@@ -20,11 +20,10 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get login_path
     post login_path, params: { session: { email: @activated_user.email, password: "foobarbaz" } }
     assert is_logged_in?
-    assert_redirected_to mypage_url
+    assert_redirected_to root_url
     follow_redirect!
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
-    assert_select "a[href=?]", mypage_path
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
@@ -33,7 +32,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path, count: 0
-    assert_select "a[href=?]", mypage_path, count: 0
   end
 
   test "user login with remembering" do

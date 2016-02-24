@@ -5,7 +5,6 @@ class User < ApplicationRecord
   has_many :money_receivers, foreign_key: "receiver_id", class_name: "MoneyTransfer", dependent: :destroy
   has_many :friendships, dependent: :destroy
   has_many :friends, foreign_key: "friend_id", through: :friendships
-  has_many :receivers, foreign_key: "id", class_name: "User"
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
