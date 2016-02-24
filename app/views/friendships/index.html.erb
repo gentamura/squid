@@ -3,16 +3,13 @@
   <% unless @friends.blank? %>
     <% @friends.each do |friend| %>
       <% friend = friend.user != current_user ? friend.user : friend.friend %>
-      <li class="collection-item avatar">
+      <%= link_to user_path(friend), class: "collection-item avatar" do %>
         <%= image_tag FFaker::Avatar.image(friend.name, '50x50'), class: 'circle' %>
         <p>
           <%= friend.name %><br>
-          <%= friend.email %><br>
+          <%= friend.email %>
         </p>
-        <%= link_to new_money_transfer_path(receiver_id: friend.id), class: 'secondary-content' do %>
-          <i class="material-icons">send</i>
-        <% end %>
-      </li>
+      <% end %>
     <% end %>
   <% else %>
     <li>No friends.</li>

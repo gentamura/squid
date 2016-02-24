@@ -1,10 +1,23 @@
 <h1>User page</h1>
-<ul class="collection">
-  <li class="collection-item avatar">
-    <%= image_tag FFaker::Avatar.image(@user.name, '50x50'), class: 'circle' %>
-    <p>
-      <%= @user.name %><br>
-      <%= @user.email %>
-    </p>
-  </li>
-</ul>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"><%= @user.name %></span>
+    <ul class="collection">
+      <li class="collection-item avatar">
+        <%= image_tag FFaker::Avatar.image(@user.name, '50x50'), class: 'circle' %>
+        <p>
+          <%= @user.name %><br>
+          <%= @user.email %><br>
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div class="card-action">
+    <% if current_user.friend?(@user) %>
+      <%= money_transfer_button(@user) %>
+    <% else %>
+      <%= add_friend_button(@user, class: 'waves-effect waves-light btn', value: 'Add Friend') %>
+    <% end %>
+    <%= delete_user_button(@user, class: 'waves-effect waves-light btn red', value: 'Delete') %>
+  </div>
+</div>

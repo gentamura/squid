@@ -2,17 +2,9 @@
   <%= image_tag FFaker::Avatar.image(user.name, '50x50'), class: 'circle' %>
   <p>
     <%= link_to user.name, user %>
-    <div class="secondary-content">
-      <% unless current_user.friend?(user) or user == current_user %>
-        <%= link_to new_friendship_path(user), class: 'waves-effect waves-light btn' do %>
-          <i class="material-icons left">library_add</i> Add friends
-        <% end %>
-      <% end %>
-      <% if current_user.admin? && !current_user?(user) %>
-        <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'waves-effect waves-light btn red' do %>
-          <i class="material-icons left delete">delete</i> Delete
-        <% end %>
-      <% end %>
-    </div>
   </p>
+  <div class="secondary-content">
+    <%= add_friend_button(user, class: 'waves-effect waves-light btn hide-on-med-and-down', value: 'Add Friend') %>
+    <%= delete_user_button(user, class: 'waves-effect waves-light btn red hide-on-med-and-down', value: 'Delete') %>
+  </div>
 </li>

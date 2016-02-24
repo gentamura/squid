@@ -1,4 +1,4 @@
-<h1>Friendships#new</h1>
+<h1>Add friends?</h1>
 <% if current_user.friend?(@friend) %>
   <p>This friend is registered.</p>
 <% else %>
@@ -20,7 +20,7 @@
       <%= form_for(@friendship) do |f| %>
         <%= f.hidden_field :user_id, value: current_user.id %>
         <%= f.hidden_field :friend_id, value: @friend.id %>
-        <%= f.submit 'Yes', class: "btn grey" %>
+        <%= f.submit 'Yes', class: "btn" %>
         <%= link_to 'No', users_path, class: "btn grey" %>
       <% end %>
     </div>
