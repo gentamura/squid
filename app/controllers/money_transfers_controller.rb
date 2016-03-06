@@ -1,11 +1,15 @@
 class MoneyTransfersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :new, :create]
+  before_action :logged_in_user, only: [:index, :new, :create, :show]
   before_action :receiver, only: :new
 
   def index
   end
 
   def new
+  end
+
+  def show
+    @money_transfer = current_user.money_transfer_current_user_all.find(params[:id])
   end
 
   def create

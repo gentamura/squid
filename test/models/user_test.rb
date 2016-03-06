@@ -88,4 +88,22 @@ class UserTest < ActiveSupport::TestCase
     user.unfriend(other_user)
     assert_not user.friend?(other_user)
   end
+
+  test "should include current user id as receiver id in money sender collection" do
+    user = users(:foo)
+    senders = user.money_senders
+    assert senders.all? { |sender| sender.receiver_id == user.id }
+  end
+
+  test "should include current user id as sender id in money receiver collection" do
+    user = users(:foo)
+    receivers = user.money_receivers
+    assert receivers.all? { |receiver| receiver.sender_id == user.id }
+  end
+
+  test "should include current user id in money transfer timeline" do
+    user = users(:foo)
+    timeline = user.money_transfer_current_user_all
+    assert timeline.all? { |line| line.sender_id == user.id or line.receiver_id == user.id  }
+  end
 end

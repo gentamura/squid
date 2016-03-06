@@ -45,6 +45,7 @@ GEM
     bcrypt (3.1.10)
     builder (3.2.2)
     byebug (8.2.2)
+    choice (0.2.0)
     coderay (1.1.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -125,6 +126,11 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
+    rails-erd (1.4.6)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_12factor (0.0.3)
@@ -140,6 +146,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.5.0)
     redis (3.2.2)
+    ruby-graphviz (1.2.2)
     ruby-progressbar (1.7.5)
     sass (3.4.21)
     sass-rails (5.0.4)
@@ -200,6 +207,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (>= 5.0.0.beta2, < 5.1)
+  rails-erd
   rails_12factor
   redis (~> 3.0)
   sass-rails (~> 5.0)

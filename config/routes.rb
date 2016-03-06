@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   get 'mypage' => 'users#mypage'
   scope :mypage do
-    resources :money_transfers, only: [:index, :new, :create]
+    resources :money_transfers, only: [:index, :new, :create, :show]
     resources :friendships, only: [:index, :create]
     get 'friendships/new/:id', to: 'friendships#new', as: :new_friendship
   end

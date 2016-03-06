@@ -1,9 +1,14 @@
-<h1>Money transfer</h1>
+<h1>Send</h1>
 
 <% if @receiver_friends.present? %>
 
   <%= form_for(:money_transfer, url: money_transfers_path) do |f| %>
     <div>
+      <%= label_tag :account %>
+      <div class="input-field">
+        <%= current_user.money_account.balance %>
+      </div>
+
       <%= f.label :receiver %>
       <div class="input-field">
         <% unless @assigned_receiver.blank? %>
@@ -24,7 +29,11 @@
       <%= f.text_field :message %>
     </div>
 
-    <%= f.submit "Submit", class: "waves-effect waves-light btn" %>
+    <div>
+      set input type image
+    </div>
+
+    <%= f.submit "Swipe to pay", class: "waves-effect waves-light btn" %>
   <% end %>
 
 <% else %>

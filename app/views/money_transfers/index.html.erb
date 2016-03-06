@@ -5,7 +5,7 @@
     <ul class="collection">
       <% if current_user.money_senders %>
         <% current_user.money_senders.each do |transfer| %>
-          <li class="collection-item avatar">
+          <a href="<%= money_transfer_path transfer.id %>" class="collection-item avatar">
             <%= image_tag FFaker::Avatar.image(transfer.receiver.name, '50x50'), class: 'circle' %>
             <p>
               Receiver name: <%= transfer.receiver.name %><br>
@@ -13,7 +13,7 @@
               Message: <%= transfer.message %><br>
               Sent date: <%= transfer.created_at %>
             </p>
-          </li>
+          </a>
         <% end %>
       <% end %>
     </ul>
@@ -23,7 +23,7 @@
     <ul class="collection">
       <% if current_user.money_receivers %>
         <% current_user.money_receivers.each do |transfer| %>
-          <li class="collection-item avatar">
+          <a href="<%= money_transfer_path transfer.id %>" class="collection-item avatar">
             <%= image_tag FFaker::Avatar.image(transfer.sender.name, '50x50'), class: 'circle' %>
             <p>
               Sender name: <%= transfer.sender.name %><br>
@@ -31,7 +31,7 @@
               Message: <%= transfer.message %><br>
               Sent date: <%= transfer.created_at %>
             </p>
-          </li>
+          </a>
         <% end %>
       <% end %>
     </ul>

@@ -1,17 +1,28 @@
-<h1>My page</h1>
+<h1>Timeline</h1>
 <ul class="collection">
   <li class="collection-item avatar">
     <%= image_tag FFaker::Avatar.image(current_user.name, '50x50'), class: 'circle' %>
     <p>
+      current_user_id: <%= current_user.id %><br>
       <%= current_user.name %><br>
       <%= current_user.email %><br>
-      balance: <%= current_user.money_account.balance %>
+      Currnet Balance: <%= current_user.money_account.balance %>
     </p>
   </li>
 </ul>
-<h2>Information</h2>
+
+<ul class="collection">
+  <!-- TODO : Need read / unread sign -->
+  <% if current_user.money_transfer_current_user_all %>
+    <% current_user.money_transfer_current_user_all.each do |line| %>
+      <li class="collection-item">
+        <%= timeline_content(line, current_user) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h2>Links</h2>
 <p><%= link_to 'Your friends', friendships_path %></p>
 <p><%= link_to 'Your money transfers', money_transfers_path %></p>
-
-<h2>Action</h2>
 <p><%= link_to 'Money transfer to a friend', new_money_transfer_path %></p>

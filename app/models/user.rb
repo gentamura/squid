@@ -72,6 +72,11 @@ class User < ApplicationRecord
     friends.include?(other_user)
   end
 
+  # TODO : Need add amount in merchant
+  def money_transfer_current_user_all
+    money_senders.or(money_receivers)
+  end
+
   private
     def downcase_email
       self.email = email.downcase

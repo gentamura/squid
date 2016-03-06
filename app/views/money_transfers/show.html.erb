@@ -1,0 +1,26 @@
+<h1>money_trasfer#show</h1>
+<% if @money_transfer %>
+<ul class="collection">
+  <li class="collection-itema avatar">
+    <%#= timeline_detail(@money_transfer, current_user) %>
+    <p>Amount: <%= @money_transfer.amount %></p>
+    <p>
+      <span>
+        <%= image_tag FFaker::Avatar.image(@money_transfer.sender.name, '50x50'), class: 'circle' %>
+        <span><%= @money_transfer.sender.name %></span>
+      </span>
+      <span><%= @money_transfer.sender_id == current_user.id ? '>' : '<' %></span>
+      <span>
+        <%= image_tag FFaker::Avatar.image(@money_transfer.receiver.name, '50x50'), class: 'circle' %>
+        <span><%= @money_transfer.receiver.name %></span>
+      </span>
+    </p>
+    <p>Message: <%= @money_transfer.message %></p>
+    <p>Personal memo:</p>
+    <p>Attachment:</p>
+    <p>photo?:</p>
+  </li>
+</ul>
+<div>Payment processs on: <%= @money_transfer.created_at %></div>
+<div>Transaction ID: <%= @money_transfer.id %></div>
+<% end %>
