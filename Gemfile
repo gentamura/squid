@@ -66,3 +66,4 @@ end
 
 gem 'ffaker'
 gem 'rails-erd'
+gem 'rack-cors'
