@@ -1,3 +1,3 @@
 ## README
 
-:moneybag: Money transfer demo application from Rails 5 beta 3 :money_with_wings:
+:moneybag: Money transfer demo application with Rails 5.1 :money_with_wings:
